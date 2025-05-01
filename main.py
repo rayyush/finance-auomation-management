@@ -52,6 +52,14 @@ def load_transactions(file):
         st.error(f"Error processing file: {str(e)}")
         return None;
 
+def add_keyword_to_category(category, keyword):
+    keyword = keyword.strip()
+    if keyword and keyword not in st.session_state.categories[category]:
+        st.session_state.categories[category].append(keyword)
+        save_categories()
+        return True
+    return False
+
 
 def main():
     st.title("Money Management Tool")
